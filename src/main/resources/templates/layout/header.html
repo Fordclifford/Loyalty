@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <nav class="navbar navbar-light flex-nowrap bg-header py-1" layout:fragment="header">
+    <a class="navbar-brand pt-0" th:href="@{/home}">
+      <img th:src="@{/images/kcb-logo-2.jpg}" alt="KCB Logo">
+    </a>
+    
+    <form class="form-inline d-flex justify-content-end" th:action="@{/logout}" method="post">
+      <span sec:authentication="name" class="text-light pr-2"></span>
+      <button type="submit" class="btn btn-sm btn-success"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </form>
+  </nav>
+</html>

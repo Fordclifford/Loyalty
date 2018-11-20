@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Privilege Form</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary mb-3">
+	  <h5 class="card-header">Privilege Form</h5>
+	  <div class="card-body">
+	    <div th:if="${formSuccess}">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span th:text="${formSuccess}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div th:if="${formFailure}">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span th:text="${formFailure}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+	    <form th:action="@{/privilege-form}" th:object="${privilege}" method="post">
+		  <div class="form-group row">
+		    <div class="col">
+		      <label>Name</label>
+    		  <input type="text" class="form-control" th:field="*{name}" placeholder="Enter name..." required>
+		    </div>
+		  </div>
+		  <div class="form-group row mb-0">
+	        <div class="col d-flex justify-content-end">
+	          <button type="reset" class="btn btn-sm btn-danger mr-3"><i class="fas fa-eraser"></i> Reset</button>
+	          <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+	        </div>
+	      </div>
+		</form>
+	  </div>
+	</div>
+  </section>
+</html>

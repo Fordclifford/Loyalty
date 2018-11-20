@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Home</title>
+  </head>
+  <div class="jumbotron border border-success mt-3" layout:fragment="content">
+    <h1 class="display-4">KCB Loyalty</h1>
+    <p class="lead">This is the platform that KCB uses to manage the distribution of loyalty points to customers.</p>
+    <hr class="my-4">
+    <p class="lead">The application is written in Java and rests on an Oracle database.</p>
+    <a class="btn btn-lg btn-success" th:href="@{https://en.wikipedia.org/wiki/Loyalty_program}" role="button" target="_blank"><i class="fas fa-book"></i> Learn more</a>
+  </div>
+</html>

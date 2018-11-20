@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Service</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">Service</h5>
+	  <div class="card-body">
+        <table id="jobCheckGrid" class="table table-bordered table-hover w-100 nowrap">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Last Run</th>
+			  <th scope="col">Next Run</th>
+	          <th scope="col">Description</th>
+	          <th scope="col">Code</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Last Run</th>
+			  <th scope="col">Next Run</th>
+	          <th scope="col">Description</th>
+	          <th scope="col">Code</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	    <div class="modal fade" id="jobCheckView" tabindex="-1" role="dialog" aria-labelledby="jobCheckView" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="jobCheckViewTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+	            <table class="table">
+			      <tbody>
+			        <tr class="table-borderless">
+			          <td>ID</td>
+			          <td id="jobCheckId"></td>
+			        </tr>
+			        <tr>
+			          <td>Last Run</td>
+			          <td id="jobCheckLastRun"></td>
+			        </tr>
+			        <tr>
+			          <td>Next Run</td>
+			          <td id="jobCheckNextRun"></td>
+			        </tr>
+			        <tr>
+			          <td>Description</td>
+			          <td id="jobCheckDescription"></td>
+			        </tr>
+			        <tr>
+			          <td>Code</td>
+			          <td id="jobCheckCode"></td>
+			        </tr>
+			      </tbody>
+			    </table>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+</html>

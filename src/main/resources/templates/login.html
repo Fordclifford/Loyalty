@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    
+    <!-- Favicon -->
+    <link rel="icon" th:href="@{/images/kcb-favicon.png}">
+
+    <title>Login - KCB Loyalty</title>
+  </head>
+  <body>
+    <div class="container d-flex flex-column wrapper">
+	  <div class="row flex-grow-1">
+	    <div class="col-lg-6 col-md-8 col-sm-10 mx-auto my-auto">
+	      <div class="card border-success bg-light">
+  	        <img th:src="@{/images/kcb-logo.jpg}" class="card-img-top" alt="KCB Logo">
+	        <div class="card-body">
+	          <form th:action="@{/login}" method="post">
+	            <div th:if="${param.error}">
+	              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+	                <i class="fas fa-exclamation"></i>&nbsp;&nbsp;<span th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+	                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				      <span aria-hidden="true">&times;</span>
+				    </button>
+				  </div>
+	            </div>
+	            <div th:if="${param.logout}">
+	              <div class="alert alert-info alert-dismissible fade show" role="alert">
+	                <i class="fas fa-info"></i>&nbsp;&nbsp;<span>You have been logged out</span>
+	                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				      <span aria-hidden="true">&times;</span>
+				    </button>
+	              </div>
+	            </div>
+	            <div class="form-group row">
+	              <label class="col-lg-4 col-md-4 col-sm-4 col-form-label">Username</label>
+	              <div class="col-lg-8 col-md-8 col-sm-8">
+	                <input type="text" class="form-control" name="username" placeholder="Enter username...">
+	              </div>
+	            </div>
+	            <div class="form-group row">
+	              <label class="col-lg-4 col-md-4 col-sm-4 col-form-label">Password</label>
+	              <div class="col-lg-8 col-md-8 col-sm-8">
+	                <input type="password" class="form-control" name="password" placeholder="Enter password...">
+	              </div>
+	            </div>
+	            <div class="form-group row pb-2">
+	              <label class="col-lg-4 col-md-4 col-sm-4 form-check-label">Remember me</label>
+		          <div class="col-lg-8 col-md-8 col-sm-8">
+		            <div class="form-check">
+		              <input type="checkbox" class="form-check-input">
+		            </div>
+		          </div>
+		        </div>
+		        <hr>
+	            <div class="form-group row mb-0">
+		          <div class="col d-flex justify-content-end">
+		            <button type="reset" class="btn btn-danger mr-3"><i class="fas fa-eraser"></i> Reset</button>
+		            <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Login</button>
+		          </div>
+		        </div>
+	          </form>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- JS -->
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

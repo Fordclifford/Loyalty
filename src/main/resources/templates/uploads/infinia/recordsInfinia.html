@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Infinia Records</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">Infinia Records</h5>
+	  <div class="card-body">
+	    <div th:if="${gridSuccess}">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span th:text="${gridSuccess}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+	    <div id="gridSuccess" class="d-none">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span id="gridMessageSuccess"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div th:if="${gridFailure}">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span th:text="${gridFailure}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div id="gridFailure" class="d-none">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span id="gridMessageFailure"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <table id="recordsInfiniaGrid" class="table table-bordered table-hover w-100 nowrap">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">File ID</th>
+			  <th scope="col">Record Number</th>
+	          <th scope="col">Customer Number</th>
+	          <th scope="col">Main Transaction Code</th>
+	          <th scope="col">Value X1</th>
+	          <th scope="col">Account Type</th>
+	          <th scope="col">Transaction Code</th>
+	          <th scope="col">Incoming Date</th>
+	          <th scope="col">Incoming Time</th>
+	          <th scope="col">Transaction Reference</th>
+	          <th scope="col">Account Number</th>
+	          <th scope="col">Narration</th>
+	          <th scope="col">Deposit DAO</th>
+	          <th scope="col">Value X2</th>
+	          <th scope="col">Value X3</th>
+	          <th scope="col">Value X4</th>
+	          <th scope="col">DR Value</th>
+	          <th scope="col">Value X5</th>
+	          <th scope="col">Amount 1</th>
+	          <th scope="col">Amount 2</th>
+	          <th scope="col">Currency</th>
+	          <th scope="col">Value X6</th>
+	          <th scope="col">Value X7</th>
+	          <th scope="col">Points Earned</th>
+	          <th scope="col">Success Error Flag</th>
+	          <th scope="col">Matched</th>
+	          <th scope="col">Check Flag</th>
+	          <th scope="col">Closed</th>
+	          <th scope="col">Error Code</th>
+	          <th scope="col">Generated</th>
+	          <th scope="col">Processed</th>
+	          <th scope="col">Returned</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">File ID</th>
+			  <th scope="col">Record Number</th>
+	          <th scope="col">Customer Number</th>
+	          <th scope="col">Main Transaction Code</th>
+	          <th scope="col">Value X1</th>
+	          <th scope="col">Account Type</th>
+	          <th scope="col">Transaction Code</th>
+	          <th scope="col">Incoming Date</th>
+	          <th scope="col">Incoming Time</th>
+	          <th scope="col">Transaction Reference</th>
+	          <th scope="col">Account Number</th>
+	          <th scope="col">Narration</th>
+	          <th scope="col">Deposit DAO</th>
+	          <th scope="col">Value X2</th>
+	          <th scope="col">Value X3</th>
+	          <th scope="col">Value X4</th>
+	          <th scope="col">DR Value</th>
+	          <th scope="col">Value X5</th>
+	          <th scope="col">Amount 1</th>
+	          <th scope="col">Amount 2</th>
+	          <th scope="col">Currency</th>
+	          <th scope="col">Value X6</th>
+	          <th scope="col">Value X7</th>
+	          <th scope="col">Points Earned</th>
+	          <th scope="col">Success Error Flag</th>
+	          <th scope="col">Matched</th>
+	          <th scope="col">Check Flag</th>
+	          <th scope="col">Closed</th>
+	          <th scope="col">Error Code</th>
+	          <th scope="col">Generated</th>
+	          <th scope="col">Processed</th>
+	          <th scope="col">Returned</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	    <div class="modal fade" id="recordsInfiniaConfirm" tabindex="-1" role="dialog" aria-labelledby="recordsInfiniaConfirm" 
+	      aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Confirmation</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>Are you sure?</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-times"></i> No</button>
+		        <button type="button" class="btn btn-danger" id="yesConfirm"><i class="fas fa-check"></i> Yes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	    <div class="modal fade" id="recordsInfiniaView" tabindex="-1" role="dialog" aria-labelledby="recordsInfiniaView" 
+	      aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="recordsInfiniaViewTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+	            <table class="table">
+			      <tbody>
+			        <tr class="table-borderless">
+			          <td>ID</td>
+			          <td id="recordsId"></td>
+			        </tr>
+			        <tr>
+			          <td>File ID</td>
+			          <td id="recordsFileId"></td>
+			        </tr>
+			        <tr>
+			          <td>Record Number</td>
+			          <td id="recordsRecordNo"></td>
+			        </tr>
+			        <tr>
+			          <td>Customer Number</td>
+			          <td id="recordsCustomerNo"></td>
+			        </tr>
+			        <tr>
+			          <td>Main Transaction Code</td>
+			          <td id="recordsMainTransCode"></td>
+			        </tr>
+			        <tr>
+			          <td>Value X1</td>
+			          <td id="recordsValueX1"></td>
+			        </tr>
+			        <tr>
+			          <td>Account Type</td>
+			          <td id="recordsAccountType"></td>
+			        </tr>
+			        <tr>
+			          <td>Transaction Code</td>
+			          <td id="recordsTransCode"></td>
+			        </tr>
+			        <tr>
+			          <td>Incoming Date</td>
+			          <td id="recordsIncomingDate"></td>
+			        </tr>
+			        <tr>
+			          <td>Incoming Time</td>
+			          <td id="recordsIncomingTime"></td>
+			        </tr>
+			        <tr>
+			          <td>Transaction Reference</td>
+			          <td id="recordsTransRef"></td>
+			        </tr>
+			        <tr>
+			          <td>Account Number</td>
+			          <td id="recordsAccountNo"></td>
+			        </tr>
+			        <tr>
+			          <td>Narration</td>
+			          <td id="recordsNarration"></td>
+			        </tr>
+			        <tr>
+			          <td>Deposit DAO</td>
+			          <td id="recordsDepositDao"></td>
+			        </tr>
+			        <tr>
+			          <td>Value X2</td>
+			          <td id="recordsValueX2"></td>
+			        </tr>
+			        <tr>
+			          <td>Value X3</td>
+			          <td id="recordsValueX3"></td>
+			        </tr>
+			        <tr>
+			          <td>Value X4</td>
+			          <td id="recordsValueX4"></td>
+			        </tr>
+			        <tr>
+			          <td>Dr Value</td>
+			          <td id="recordsDrValue"></td>
+			        </tr>
+			        <tr>
+			          <td>Value X5</td>
+			          <td id="recordsValueX5"></td>
+			        </tr>
+			        <tr>
+			          <td>Amount 1</td>
+			          <td id="recordsAmount1"></td>
+			        </tr>
+			        <tr>
+			          <td>Amount 2</td>
+			          <td id="recordsAmount2"></td>
+			        </tr>
+			        <tr>
+			          <td>Currency</td>
+			          <td id="recordsCurrency"></td>
+			        </tr>
+			        <tr>
+			          <td>Value X6</td>
+			          <td id="recordsValueX6"></td>
+			        </tr>
+			        <tr>
+			          <td>Value X7</td>
+			          <td id="recordsValueX7"></td>
+			        </tr>
+			        <tr>
+			          <td>Points Earned</td>
+			          <td id="recordsPointsEarned"></td>
+			        </tr>
+			        <tr>
+			          <td>Success Error Flag</td>
+			          <td id="recordsSuccessErrorFlag"></td>
+			        </tr>
+			        <tr>
+			          <td>Matched</td>
+			          <td id="recordsMatched"></td>
+			        </tr>
+			        <tr>
+			          <td>Check Flag</td>
+			          <td id="recordsCheckFlag"></td>
+			        </tr>
+			        <tr>
+			          <td>Closed</td>
+			          <td id="recordsClosed"></td>
+			        </tr>
+			        <tr>
+			          <td>Error Code</td>
+			          <td id="recordsErrorCode"></td>
+			        </tr>
+			        <tr>
+			          <td>Generated</td>
+			          <td id="recordsGenerated"></td>
+			        </tr>
+			        <tr>
+			          <td>Processed</td>
+			          <td id="recordsProcessed"></td>
+			        </tr>
+			        <tr>
+			          <td>Returned</td>
+			          <td id="recordsReturned"></td>
+			        </tr>
+			      </tbody>
+			    </table>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div class="modal fade" id="recordsInfiniaEdit" tabindex="-1" role="dialog" aria-labelledby="recordsInfiniaEdit" 
+		  aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="recordsInfiniaEditTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form th:action="@{/edit-infinia-record-form}" method="post">
+		          <input type="hidden" id="id" name="id">
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>File ID</label>
+		    		  <input type="text" class="form-control" id="fileId" name="fileId" placeholder="Enter file ID..." value="" 
+		    		    required>
+				    </div>
+				    <div class="col">
+		    		  <label>Record Number</label>
+		    		  <input type="text" class="form-control" id="recordNo" name="recordNo" placeholder="Enter record number..." 
+		    		    value="" required>
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+		    		  <label>Customer Number</label>
+		    		  <input type="text" class="form-control" id="customerNo" name="customerNo" value="" required 
+		    		    placeholder="Enter customer number...">
+				    </div>
+				    <div class="col">
+				      <label>Main Transaction Code</label>
+		    		  <input type="text" class="form-control" id="mainTransCode" name="mainTransCode" value="" required 
+		    		    placeholder="Enter main transaction code...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Value X1</label>
+		    		  <input type="text" class="form-control" id="valueX1" name="valueX1" placeholder="Enter value X1..." value="">
+				    </div>
+				    <div class="col">
+				      <label>Account Type</label>
+		    		  <input type="text" class="form-control" id="accountType" name="accountType" value="" required 
+		    		    placeholder="Enter account type...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Transaction Code</label>
+		    		  <input type="text" class="form-control" id="transCode" name="transCode" value="" required 
+		    		    placeholder="Enter transaction code...">
+				    </div>
+				    <div class="col">
+				      <label>Incoming Date</label>
+		    		  <input type="text" class="form-control" id="incomingDate" name="incomingDate" value="" required 
+		    		    placeholder="Enter incoming date...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Incoming Time</label>
+		    		  <input type="text" class="form-control" id="incomingTime" name="incomingTime" value="" required 
+		    		    placeholder="Enter incoming time...">
+				    </div>
+				    <div class="col">
+				      <label>Transaction Reference</label>
+		    		  <input type="text" class="form-control" id="transRef" name="transRef" value="" required 
+		    		    placeholder="Enter transaction reference...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Account Number</label>
+		    		  <input type="text" class="form-control" id="accountNo" name="accountNo" value="" required 
+		    		    placeholder="Enter account number...">
+				    </div>
+				    <div class="col">
+				      <label>Narration</label>
+		    		  <input type="text" class="form-control" id="narration" name="narration" value="" required 
+		    		    placeholder="Enter narration...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Deposit DAO</label>
+		    		  <input type="text" class="form-control" id="depositDao" name="depositDao" value="" required 
+		    		    placeholder="Enter deposit DAO...">
+				    </div>
+				    <div class="col">
+				      <label>Value X2</label>
+		    		  <input type="text" class="form-control" id="valueX2" name="valueX2" placeholder="Enter value X2..." value="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Value X3</label>
+		    		  <input type="text" class="form-control" id="valueX3" name="valueX3" placeholder="Enter value X3..." value="">
+				    </div>
+				    <div class="col">
+				      <label>Value X4</label>
+		    		  <input type="text" class="form-control" id="valueX4" name="valueX4" placeholder="Enter value X4..." value="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>DR Value</label>
+		    		  <input type="text" class="form-control" id="drValue" name="drValue" value="" required 
+		    		    placeholder="Enter DR value...">
+				    </div>
+				    <div class="col">
+				      <label>Value X5</label>
+		    		  <input type="text" class="form-control" id="valueX5" name="valueX5" placeholder="Enter value X5..." value="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Amount 1</label>
+		    		  <input type="text" class="form-control" id="amount1" name="amount1" placeholder="Enter amount 1..." value="" 
+		    		    required>
+				    </div>
+				    <div class="col">
+				      <label>Amount 2</label>
+		    		  <input type="text" class="form-control" id="amount2" name="amount2" placeholder="Enter amount 2..." value="" 
+		    		    required>
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Currency</label>
+		    		  <input type="text" class="form-control" id="currency" name="currency" placeholder="Enter currency..." value="" 
+		    		    required>
+				    </div>
+				    <div class="col">
+				      <label>Value X6</label>
+		    		  <input type="text" class="form-control" id="valueX6" name="valueX6" placeholder="Enter value X6..." value="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Value X7</label>
+		    		  <input type="text" class="form-control" id="valueX7" name="valueX7" placeholder="Enter value X7..." value="">
+				    </div>
+				    <div class="col">
+				      <label>Points Earned</label>
+		    		  <input type="text" class="form-control" id="pointsEarned" name="pointsEarned" value="" required 
+		    		    placeholder="Enter points earned...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Success Error Flag</label>
+		    		  <input type="text" class="form-control" id="successErrorFlag" name="successErrorFlag" value="" 
+		    		    placeholder="Enter success error flag...">
+				    </div>
+				    <div class="col">
+				      <label>Matched</label>
+		    		  <input type="text" class="form-control" id="matched" name="matched" placeholder="Enter matched..." value="" 
+		    		    required>
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Check Flag</label>
+		    		  <input type="text" class="form-control" id="checkFlag" name="checkFlag" value="" required 
+		    		    placeholder="Enter check flag...">
+				    </div>
+				    <div class="col">
+				      <label>Closed</label>
+		    		  <input type="text" class="form-control" id="closed" name="closed" value="" required 
+		    		    placeholder="Enter closed...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Error Code</label>
+		    		  <input type="text" class="form-control" id="errorCode" name="errorCode" value="" 
+		    		    placeholder="Enter error code...">
+				    </div>
+				    <div class="col">
+				      <label>Generated</label>
+		    		  <input type="text" class="form-control" id="generated" name="generated" placeholder="Enter generated..." 
+		    		  	value="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Processed</label>
+		    		  <input type="text" class="form-control" id="processed" name="processed" placeholder="Enter processed..." 
+		    		  	value="">
+				    </div>
+				    <div class="col">
+				      <label>Returned</label>
+		    		  <input type="text" class="form-control" id="returned" name="returned" placeholder="Enter returned..." value="">
+				    </div>
+				  </div>
+				  <div class="form-group row mb-0">
+			        <div class="col d-flex justify-content-end">
+			          <button type="reset" class="btn btn-sm btn-danger mr-3"><i class="fas fa-eraser"></i> Reset</button>
+			          <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+			        </div>
+			      </div>
+				</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+</html>

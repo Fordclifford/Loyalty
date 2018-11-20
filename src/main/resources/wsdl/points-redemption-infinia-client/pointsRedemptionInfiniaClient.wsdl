@@ -1,0 +1,316 @@
+<wsdl:definitions name="KCBPGManager" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+   <wsdl:types>
+      <xsd:schema targetNamespace="http://tempuri.org/Imports">
+         <xsd:import schemaLocation="http://103.233.78.188:7021/KCBPGManager?xsd=xsd0" namespace="http://tempuri.org/"/>
+         <xsd:import schemaLocation="http://103.233.78.188:7021/KCBPGManager?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+         <xsd:import schemaLocation="http://103.233.78.188:7021/KCBPGManager?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      </xsd:schema>
+   </wsdl:types>
+   <wsdl:message name="IKCBPGManager_PointsEnquiry_InputMessage">
+      <wsdl:part name="parameters" element="tns:PointsEnquiry"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsEnquiry_OutputMessage">
+      <wsdl:part name="parameters" element="tns:PointsEnquiryResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsEnquiry_ApplicationFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q1:ApplicationFault" xmlns:q1="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsEnquiry_ExceptionFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q2:ExceptionFault" xmlns:q2="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsRedemption_InputMessage">
+      <wsdl:part name="parameters" element="tns:PointsRedemption"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsRedemption_OutputMessage">
+      <wsdl:part name="parameters" element="tns:PointsRedemptionResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsRedemption_ApplicationFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q3:ApplicationFault" xmlns:q3="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsRedemption_ExceptionFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q4:ExceptionFault" xmlns:q4="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_GenerateActivationOTP_InputMessage">
+      <wsdl:part name="parameters" element="tns:GenerateActivationOTP"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_GenerateActivationOTP_OutputMessage">
+      <wsdl:part name="parameters" element="tns:GenerateActivationOTPResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_GenerateActivationOTP_ExceptionFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q5:ExceptionFault" xmlns:q5="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_GenerateActivationOTP_ApplicationFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q6:ApplicationFault" xmlns:q6="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberActivation_InputMessage">
+      <wsdl:part name="parameters" element="tns:MemberActivation"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberActivation_OutputMessage">
+      <wsdl:part name="parameters" element="tns:MemberActivationResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberActivation_ExceptionFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q7:ExceptionFault" xmlns:q7="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberActivation_ApplicationFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q8:ApplicationFault" xmlns:q8="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_ProfileCheck_InputMessage">
+      <wsdl:part name="parameters" element="tns:ProfileCheck"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_ProfileCheck_OutputMessage">
+      <wsdl:part name="parameters" element="tns:ProfileCheckResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_ProfileCheck_ExceptionFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q9:ExceptionFault" xmlns:q9="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_ProfileCheck_ApplicationFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q10:ApplicationFault" xmlns:q10="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberStatement_InputMessage">
+      <wsdl:part name="parameters" element="tns:MemberStatement"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberStatement_OutputMessage">
+      <wsdl:part name="parameters" element="tns:MemberStatementResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberStatement_ExceptionFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q11:ExceptionFault" xmlns:q11="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberStatement_ApplicationFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q12:ApplicationFault" xmlns:q12="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberEnrollmentandActivation_InputMessage">
+      <wsdl:part name="parameters" element="tns:MemberEnrollmentandActivation"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberEnrollmentandActivation_OutputMessage">
+      <wsdl:part name="parameters" element="tns:MemberEnrollmentandActivationResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberEnrollmentandActivation_ExceptionFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q13:ExceptionFault" xmlns:q13="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_MemberEnrollmentandActivation_ApplicationFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q14:ApplicationFault" xmlns:q14="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_VoidTransaction_InputMessage">
+      <wsdl:part name="parameters" element="tns:VoidTransaction"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_VoidTransaction_OutputMessage">
+      <wsdl:part name="parameters" element="tns:VoidTransactionResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_VoidTransaction_ExceptionFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q15:ExceptionFault" xmlns:q15="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_VoidTransaction_ApplicationFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q16:ApplicationFault" xmlns:q16="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsTransfer_InputMessage">
+      <wsdl:part name="parameters" element="tns:PointsTransfer"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsTransfer_OutputMessage">
+      <wsdl:part name="parameters" element="tns:PointsTransferResponse"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsTransfer_ApplicationFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q17:ApplicationFault" xmlns:q17="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:message name="IKCBPGManager_PointsTransfer_ExceptionFaultFault_FaultMessage">
+      <wsdl:part name="detail" element="q18:ExceptionFault" xmlns:q18="http://schemas.datacontract.org/2004/07/Framework.EnterpriseLibrary.Common.WCF.Faults"/>
+   </wsdl:message>
+   <wsdl:portType name="IKCBPGManager">
+      <wsdl:operation name="PointsEnquiry">
+         <wsdl:input wsaw:Action="http://tempuri.org/IKCBPGManager/PointsEnquiry" message="tns:IKCBPGManager_PointsEnquiry_InputMessage"/>
+         <wsdl:output wsaw:Action="http://tempuri.org/IKCBPGManager/PointsEnquiryResponse" message="tns:IKCBPGManager_PointsEnquiry_OutputMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/PointsEnquiryApplicationFaultFault" name="ApplicationFaultFault" message="tns:IKCBPGManager_PointsEnquiry_ApplicationFaultFault_FaultMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/PointsEnquiryExceptionFaultFault" name="ExceptionFaultFault" message="tns:IKCBPGManager_PointsEnquiry_ExceptionFaultFault_FaultMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="PointsRedemption">
+         <wsdl:input wsaw:Action="http://tempuri.org/IKCBPGManager/PointsRedemption" message="tns:IKCBPGManager_PointsRedemption_InputMessage"/>
+         <wsdl:output wsaw:Action="http://tempuri.org/IKCBPGManager/PointsRedemptionResponse" message="tns:IKCBPGManager_PointsRedemption_OutputMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/PointsRedemptionApplicationFaultFault" name="ApplicationFaultFault" message="tns:IKCBPGManager_PointsRedemption_ApplicationFaultFault_FaultMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/PointsRedemptionExceptionFaultFault" name="ExceptionFaultFault" message="tns:IKCBPGManager_PointsRedemption_ExceptionFaultFault_FaultMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="GenerateActivationOTP">
+         <wsdl:input wsaw:Action="http://tempuri.org/IKCBPGManager/GenerateActivationOTP" message="tns:IKCBPGManager_GenerateActivationOTP_InputMessage"/>
+         <wsdl:output wsaw:Action="http://tempuri.org/IKCBPGManager/GenerateActivationOTPResponse" message="tns:IKCBPGManager_GenerateActivationOTP_OutputMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/GenerateActivationOTPExceptionFaultFault" name="ExceptionFaultFault" message="tns:IKCBPGManager_GenerateActivationOTP_ExceptionFaultFault_FaultMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/GenerateActivationOTPApplicationFaultFault" name="ApplicationFaultFault" message="tns:IKCBPGManager_GenerateActivationOTP_ApplicationFaultFault_FaultMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="MemberActivation">
+         <wsdl:input wsaw:Action="http://tempuri.org/IKCBPGManager/MemberActivation" message="tns:IKCBPGManager_MemberActivation_InputMessage"/>
+         <wsdl:output wsaw:Action="http://tempuri.org/IKCBPGManager/MemberActivationResponse" message="tns:IKCBPGManager_MemberActivation_OutputMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/MemberActivationExceptionFaultFault" name="ExceptionFaultFault" message="tns:IKCBPGManager_MemberActivation_ExceptionFaultFault_FaultMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/MemberActivationApplicationFaultFault" name="ApplicationFaultFault" message="tns:IKCBPGManager_MemberActivation_ApplicationFaultFault_FaultMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="ProfileCheck">
+         <wsdl:input wsaw:Action="http://tempuri.org/IKCBPGManager/ProfileCheck" message="tns:IKCBPGManager_ProfileCheck_InputMessage"/>
+         <wsdl:output wsaw:Action="http://tempuri.org/IKCBPGManager/ProfileCheckResponse" message="tns:IKCBPGManager_ProfileCheck_OutputMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/ProfileCheckExceptionFaultFault" name="ExceptionFaultFault" message="tns:IKCBPGManager_ProfileCheck_ExceptionFaultFault_FaultMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/ProfileCheckApplicationFaultFault" name="ApplicationFaultFault" message="tns:IKCBPGManager_ProfileCheck_ApplicationFaultFault_FaultMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="MemberStatement">
+         <wsdl:input wsaw:Action="http://tempuri.org/IKCBPGManager/MemberStatement" message="tns:IKCBPGManager_MemberStatement_InputMessage"/>
+         <wsdl:output wsaw:Action="http://tempuri.org/IKCBPGManager/MemberStatementResponse" message="tns:IKCBPGManager_MemberStatement_OutputMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/MemberStatementExceptionFaultFault" name="ExceptionFaultFault" message="tns:IKCBPGManager_MemberStatement_ExceptionFaultFault_FaultMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/MemberStatementApplicationFaultFault" name="ApplicationFaultFault" message="tns:IKCBPGManager_MemberStatement_ApplicationFaultFault_FaultMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="MemberEnrollmentandActivation">
+         <wsdl:input wsaw:Action="http://tempuri.org/IKCBPGManager/MemberEnrollmentandActivation" message="tns:IKCBPGManager_MemberEnrollmentandActivation_InputMessage"/>
+         <wsdl:output wsaw:Action="http://tempuri.org/IKCBPGManager/MemberEnrollmentandActivationResponse" message="tns:IKCBPGManager_MemberEnrollmentandActivation_OutputMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/MemberEnrollmentandActivationExceptionFaultFault" name="ExceptionFaultFault" message="tns:IKCBPGManager_MemberEnrollmentandActivation_ExceptionFaultFault_FaultMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/MemberEnrollmentandActivationApplicationFaultFault" name="ApplicationFaultFault" message="tns:IKCBPGManager_MemberEnrollmentandActivation_ApplicationFaultFault_FaultMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="VoidTransaction">
+         <wsdl:input wsaw:Action="http://tempuri.org/IKCBPGManager/VoidTransaction" message="tns:IKCBPGManager_VoidTransaction_InputMessage"/>
+         <wsdl:output wsaw:Action="http://tempuri.org/IKCBPGManager/VoidTransactionResponse" message="tns:IKCBPGManager_VoidTransaction_OutputMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/VoidTransactionExceptionFaultFault" name="ExceptionFaultFault" message="tns:IKCBPGManager_VoidTransaction_ExceptionFaultFault_FaultMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/VoidTransactionApplicationFaultFault" name="ApplicationFaultFault" message="tns:IKCBPGManager_VoidTransaction_ApplicationFaultFault_FaultMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="PointsTransfer">
+         <wsdl:input wsaw:Action="http://tempuri.org/IKCBPGManager/PointsTransfer" message="tns:IKCBPGManager_PointsTransfer_InputMessage"/>
+         <wsdl:output wsaw:Action="http://tempuri.org/IKCBPGManager/PointsTransferResponse" message="tns:IKCBPGManager_PointsTransfer_OutputMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/PointsTransferApplicationFaultFault" name="ApplicationFaultFault" message="tns:IKCBPGManager_PointsTransfer_ApplicationFaultFault_FaultMessage"/>
+         <wsdl:fault wsaw:Action="http://tempuri.org/IKCBPGManager/PointsTransferExceptionFaultFault" name="ExceptionFaultFault" message="tns:IKCBPGManager_PointsTransfer_ExceptionFaultFault_FaultMessage"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="BasicHttpBinding_IKCBPGManager" type="tns:IKCBPGManager">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="PointsEnquiry">
+         <soap:operation soapAction="http://tempuri.org/IKCBPGManager/PointsEnquiry" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="ApplicationFaultFault">
+            <soap:fault name="ApplicationFaultFault" use="literal"/>
+         </wsdl:fault>
+         <wsdl:fault name="ExceptionFaultFault">
+            <soap:fault name="ExceptionFaultFault" use="literal"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="PointsRedemption">
+         <soap:operation soapAction="http://tempuri.org/IKCBPGManager/PointsRedemption" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="ApplicationFaultFault">
+            <soap:fault name="ApplicationFaultFault" use="literal"/>
+         </wsdl:fault>
+         <wsdl:fault name="ExceptionFaultFault">
+            <soap:fault name="ExceptionFaultFault" use="literal"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="GenerateActivationOTP">
+         <soap:operation soapAction="http://tempuri.org/IKCBPGManager/GenerateActivationOTP" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="ExceptionFaultFault">
+            <soap:fault name="ExceptionFaultFault" use="literal"/>
+         </wsdl:fault>
+         <wsdl:fault name="ApplicationFaultFault">
+            <soap:fault name="ApplicationFaultFault" use="literal"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="MemberActivation">
+         <soap:operation soapAction="http://tempuri.org/IKCBPGManager/MemberActivation" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="ExceptionFaultFault">
+            <soap:fault name="ExceptionFaultFault" use="literal"/>
+         </wsdl:fault>
+         <wsdl:fault name="ApplicationFaultFault">
+            <soap:fault name="ApplicationFaultFault" use="literal"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="ProfileCheck">
+         <soap:operation soapAction="http://tempuri.org/IKCBPGManager/ProfileCheck" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="ExceptionFaultFault">
+            <soap:fault name="ExceptionFaultFault" use="literal"/>
+         </wsdl:fault>
+         <wsdl:fault name="ApplicationFaultFault">
+            <soap:fault name="ApplicationFaultFault" use="literal"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="MemberStatement">
+         <soap:operation soapAction="http://tempuri.org/IKCBPGManager/MemberStatement" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="ExceptionFaultFault">
+            <soap:fault name="ExceptionFaultFault" use="literal"/>
+         </wsdl:fault>
+         <wsdl:fault name="ApplicationFaultFault">
+            <soap:fault name="ApplicationFaultFault" use="literal"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="MemberEnrollmentandActivation">
+         <soap:operation soapAction="http://tempuri.org/IKCBPGManager/MemberEnrollmentandActivation" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="ExceptionFaultFault">
+            <soap:fault name="ExceptionFaultFault" use="literal"/>
+         </wsdl:fault>
+         <wsdl:fault name="ApplicationFaultFault">
+            <soap:fault name="ApplicationFaultFault" use="literal"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="VoidTransaction">
+         <soap:operation soapAction="http://tempuri.org/IKCBPGManager/VoidTransaction" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="ExceptionFaultFault">
+            <soap:fault name="ExceptionFaultFault" use="literal"/>
+         </wsdl:fault>
+         <wsdl:fault name="ApplicationFaultFault">
+            <soap:fault name="ApplicationFaultFault" use="literal"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="PointsTransfer">
+         <soap:operation soapAction="http://tempuri.org/IKCBPGManager/PointsTransfer" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+         <wsdl:fault name="ApplicationFaultFault">
+            <soap:fault name="ApplicationFaultFault" use="literal"/>
+         </wsdl:fault>
+         <wsdl:fault name="ExceptionFaultFault">
+            <soap:fault name="ExceptionFaultFault" use="literal"/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="KCBPGManager">
+      <wsdl:port name="BasicHttpBinding_IKCBPGManager" binding="tns:BasicHttpBinding_IKCBPGManager">
+         <soap:address location="http://103.233.78.188:7021/KCBPGManager"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>

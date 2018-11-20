@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Uploaded Infinia Files</title>
+  </head>
+  <section layout:fragment="content">
+	<div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">Uploaded Infinia Files</h5>
+	  <div class="card-body">
+	    <div id="gridSuccess" class="d-none">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span id="gridMessageSuccess"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div id="gridFailure" class="d-none">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span id="gridMessageFailure"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <table id="uploadInfiniaGrid" class="table table-bordered table-hover w-100 nowrap">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Name</th>
+			  <th scope="col">Data</th>
+	          <th scope="col">Upload Date</th>
+	          <th scope="col">Type</th>
+	          <th scope="col">Status</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+	          <th scope="col">Name</th>
+	          <th scope="col">Data</th>
+	          <th scope="col">Upload Date</th>
+	          <th scope="col">Type</th>
+	          <th scope="col">Status</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	    <div class="modal fade" id="uploadInfiniaConfirm" tabindex="-1" role="dialog" aria-labelledby="uploadInfiniaConfirm" 
+	      aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Confirmation</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>Are you sure?</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-times"></i> No</button>
+		        <button type="button" class="btn btn-danger" id="yesConfirm"><i class="fas fa-check"></i> Yes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+</html>

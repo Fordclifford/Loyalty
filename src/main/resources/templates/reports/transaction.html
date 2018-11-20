@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Transaction Report</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">Transaction Report</h5>
+	  <div class="card-body">
+        <table id="transactionReportGrid" class="table table-bordered table-hover w-100">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Infinia File ID</th>
+			  <th scope="col">KCB File ID</th>
+	          <th scope="col">Infinia File Count</th>
+	          <th scope="col">KCB File Count</th>
+	          <th scope="col">Count Matched</th>
+	          <th scope="col">All Customers Exist</th>
+	          <th scope="col">Non-Customer Count Infinia</th>
+	          <th scope="col">Non-Customer Count KCB</th>
+	          <th scope="col">Infinia Total Points</th>
+	          <th scope="col">KCB Total Points</th>
+	          <th scope="col">Points Matched</th>
+	          <th scope="col">Infinia Distinct Transaction Code</th>
+	          <th scope="col">KCB Distinct Transaction Code</th>
+	          <th scope="col">Distinct Transaction Code Matched</th>
+	          <th scope="col">Infinia Success Count</th>
+	          <th scope="col">KCB Success Count</th>
+	          <th scope="col">Success Count Matched</th>
+	          <th scope="col">Infinia Error Count</th>
+	          <th scope="col">KCB Error Count</th>
+	          <th scope="col">Error Count Matched</th>
+	          <th scope="col">Infinia Total Amount 1</th>
+	          <th scope="col">KCB Total Amount 1</th>
+	          <th scope="col">Amount 1 Matched</th>
+	          <th scope="col">Infinia Total Amount 2</th>
+	          <th scope="col">KCB Total Amount 2</th>
+	          <th scope="col">Amount 2 Matched</th>
+	          <th scope="col">File Matched</th>
+	          <th scope="col">Closed</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Infinia File ID</th>
+			  <th scope="col">KCB File ID</th>
+	          <th scope="col">Infinia File Count</th>
+	          <th scope="col">KCB File Count</th>
+	          <th scope="col">Count Matched</th>
+	          <th scope="col">All Customers Exist</th>
+	          <th scope="col">Non-Customer Count Infinia</th>
+	          <th scope="col">Non-Customer Count KCB</th>
+	          <th scope="col">Infinia Total Points</th>
+	          <th scope="col">KCB Total Points</th>
+	          <th scope="col">Points Matched</th>
+	          <th scope="col">Infinia Distinct Transaction Code</th>
+	          <th scope="col">KCB Distinct Transaction Code</th>
+	          <th scope="col">Distinct Transaction Code Matched</th>
+	          <th scope="col">Infinia Success Count</th>
+	          <th scope="col">KCB Success Count</th>
+	          <th scope="col">Success Count Matched</th>
+	          <th scope="col">Infinia Error Count</th>
+	          <th scope="col">KCB Error Count</th>
+	          <th scope="col">Error Count Matched</th>
+	          <th scope="col">Infinia Total Amount 1</th>
+	          <th scope="col">KCB Total Amount 1</th>
+	          <th scope="col">Amount 1 Matched</th>
+	          <th scope="col">Infinia Total Amount 2</th>
+	          <th scope="col">KCB Total Amount 2</th>
+	          <th scope="col">Amount 2 Matched</th>
+	          <th scope="col">File Matched</th>
+	          <th scope="col">Closed</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	  </div>
+	</div>
+  </section>
+</html>

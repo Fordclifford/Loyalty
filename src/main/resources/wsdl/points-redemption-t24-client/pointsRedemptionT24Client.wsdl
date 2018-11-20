@@ -1,0 +1,48 @@
+<!--File Transfer_Transfer_Update_2.0.wsdl, application Infinia-->
+<wsdl:definitions name="Untitled" targetNamespace="http://KCB.co.ke/Transfer/Service/Transfer/2.0/Update/WSDL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="urn://kcbbankgroup.com/SharedResources/Schemas/SOAMessages/SoapHeader" xmlns:ns1="urn://KCB.co.ke/Transfer/DataModel/Transfer/Update/2.0/Transfer.Update" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://KCB.co.ke/Transfer/Service/Transfer/2.0/Update/WSDL">
+   <wsdl:types>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="urn://KCB.co.ke/Transfer/DataModel/Transfer/Update/2.0/Transfer.Update" schemaLocation="http://172.17.80.100:7802/BusinessDomains/TRANSFER/Services/Transfer/2.0/Update/ServiceStarter?xsd=xsd0"/>
+      </xsd:schema>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="urn://kcbbankgroup.com/SharedResources/Schemas/SOAMessages/SoapHeader" schemaLocation="http://172.17.80.100:7802/BusinessDomains/TRANSFER/Services/Transfer/2.0/Update/ServiceStarter?xsd=xsd1"/>
+      </xsd:schema>
+   </wsdl:types>
+   <wsdl:service name="ServiceStarter">
+      <wsdl:port binding="tns:SOAP_sp_Event_sp_SourceBinding" name="SOAP_sp_Event_sp_Source">
+         <soap:address location="http://172.17.80.100:7802/BusinessDomains/TRANSFER/Services/Transfer/2.0/Update/ServiceStarter"/>
+      </wsdl:port>
+   </wsdl:service>
+   <wsdl:portType name="PortType">
+      <wsdl:operation name="Update">
+         <wsdl:input message="tns:UpdateInput"/>
+         <wsdl:output message="tns:UpdateOutput"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="SOAP_sp_Event_sp_SourceBinding" type="tns:PortType">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="Update">
+         <soap:operation soapAction="/KCB.co.ke/Transfer/Service/Transfer/Update/2.0" style="document"/>
+         <wsdl:input>
+            <soap:body parts="input" use="literal"/>
+            <soap:header message="tns:HeaderRequest" part="HeaderRequest" use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body parts="output" use="literal"/>
+            <soap:header message="tns:HeaderReply" part="HeaderReply" use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:message name="HeaderRequest">
+      <wsdl:part element="ns0:HeaderRequest" name="HeaderRequest"/>
+   </wsdl:message>
+   <wsdl:message name="HeaderReply">
+      <wsdl:part element="ns0:HeaderReply" name="HeaderReply"/>
+   </wsdl:message>
+   <wsdl:message name="UpdateInput">
+      <wsdl:part element="ns1:DataInput" name="input"/>
+   </wsdl:message>
+   <wsdl:message name="UpdateOutput">
+      <wsdl:part element="ns1:DataOutput" name="output"/>
+   </wsdl:message>
+</wsdl:definitions>

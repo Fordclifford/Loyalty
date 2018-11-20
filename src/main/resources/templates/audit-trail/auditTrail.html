@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Audit Trail</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">Audit Trail</h5>
+	  <div class="card-body">
+        <table id="auditTrailGrid" class="table table-bordered table-hover w-100 nowrap">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Timestamp</th>
+			  <th scope="col">Principal</th>
+	          <th scope="col">Session ID</th>
+	          <th scope="col">Method</th>
+	          <th scope="col">URI</th>
+	          <th scope="col">Host</th>
+	          <th scope="col">Referrer</th>
+	          <th scope="col">Cookie</th>
+	          <th scope="col">Remote Address</th>
+	          <th scope="col">Status</th>
+	          <th scope="col">Time Taken</th>
+	          <th scope="col">Type</th>
+	          <th scope="col">Message</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Timestamp</th>
+			  <th scope="col">Principal</th>
+	          <th scope="col">Session ID</th>
+	          <th scope="col">Method</th>
+	          <th scope="col">URI</th>
+	          <th scope="col">Host</th>
+	          <th scope="col">Referrer</th>
+	          <th scope="col">Cookie</th>
+	          <th scope="col">Remote Address</th>
+	          <th scope="col">Status</th>
+	          <th scope="col">Time Taken</th>
+	          <th scope="col">Type</th>
+	          <th scope="col">Message</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	    <div class="modal fade" id="auditTrailView" tabindex="-1" role="dialog" aria-labelledby="auditTrailView" aria-hidden="true">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="auditTrailViewTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+	            <table class="table">
+			      <tbody>
+			        <tr class="table-borderless">
+			          <td>ID</td>
+			          <td id="auditTrailId"></td>
+			        </tr>
+			        <tr>
+			          <td>Timestamp</td>
+			          <td id="auditTrailTimestamp"></td>
+			        </tr>
+			        <tr>
+			          <td>Principal</td>
+			          <td id="auditTrailPrincipal"></td>
+			        </tr>
+			        <tr>
+			          <td>Session ID</td>
+			          <td id="auditTrailSessionId"></td>
+			        </tr>
+			        <tr>
+			          <td>Method</td>
+			          <td id="auditTrailMethod"></td>
+			        </tr>
+			        <tr>
+			          <td>URI</td>
+			          <td id="auditTrailUri"></td>
+			        </tr>
+			        <tr>
+			          <td>Host</td>
+			          <td id="auditTrailHost"></td>
+			        </tr>
+			        <tr>
+			          <td>Referrer</td>
+			          <td id="auditTrailReferrer"></td>
+			        </tr>
+			        <tr>
+			          <td>Cookie</td>
+			          <td id="auditTrailCookie"></td>
+			        </tr>
+			        <tr>
+			          <td>Remote Address</td>
+			          <td id="auditTrailRemoteAddress"></td>
+			        </tr>
+			        <tr>
+			          <td>Status</td>
+			          <td id="auditTrailStatus"></td>
+			        </tr>
+			        <tr>
+			          <td>Time Taken</td>
+			          <td id="auditTrailTimeTaken"></td>
+			        </tr>
+			        <tr>
+			          <td>Type</td>
+			          <td id="auditTrailType"></td>
+			        </tr>
+			        <tr>
+			          <td>Message</td>
+			          <td id="auditTrailMessage"></td>
+			        </tr>
+			      </tbody>
+			    </table>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+</html>

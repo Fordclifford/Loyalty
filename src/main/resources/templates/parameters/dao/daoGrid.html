@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>DAO Grid</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">DAO Grid</h5>
+	  <div class="card-body">
+	    <div th:if="${gridSuccess}">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span th:text="${gridSuccess}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+	    <div id="gridSuccess" class="d-none">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span id="gridMessageSuccess"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div th:if="${gridFailure}">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span th:text="${gridFailure}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div id="gridFailure" class="d-none">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span id="gridMessageFailure"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <table id="daoGrid" class="table table-bordered table-hover w-100 nowrap">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Branch Code</th>
+			  <th scope="col">Branch Name</th>
+	          <th scope="col">PL Account</th>
+	          <th scope="col">Loyalty Account</th>
+	          <th scope="col">Holding Account</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Branch Code</th>
+			  <th scope="col">Branch Name</th>
+	          <th scope="col">PL Account</th>
+	          <th scope="col">Loyalty Account</th>
+	          <th scope="col">Holding Account</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	  </div>
+	</div>
+	<div class="modal fade" id="daoConfirm" tabindex="-1" role="dialog" aria-labelledby="daoConfirm" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Confirmation</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <p>Are you sure?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-times"></i> No</button>
+	        <button type="button" class="btn btn-danger" id="yesConfirm"><i class="fas fa-check"></i> Yes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="daoView" tabindex="-1" role="dialog" aria-labelledby="daoView" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="daoViewTitle"></h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+            <table class="table">
+		      <tbody>
+		        <tr class="table-borderless">
+		          <td>ID</td>
+		          <td id="daoId"></td>
+		        </tr>
+		        <tr>
+		          <td>Branch Code</td>
+		          <td id="daoBranchCode"></td>
+		        </tr>
+		        <tr>
+		          <td>Branch Name</td>
+		          <td id="daoBranchName"></td>
+		        </tr>
+		        <tr>
+		          <td>PL Account</td>
+		          <td id="daoProfitLossAc"></td>
+		        </tr>
+		        <tr>
+		          <td>Loyalty Account</td>
+		          <td id="daoLoyaltyAc"></td>
+		        </tr>
+		        <tr>
+		          <td>Holding Account</td>
+		          <td id="daoHoldingAc"></td>
+		        </tr>
+		      </tbody>
+		    </table>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="daoEdit" tabindex="-1" role="dialog" aria-labelledby="daoEdit" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="daoEditTitle"></h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form th:action="@{/edit-dao-form}" method="post">
+	          <input type="hidden" id="id" name="id">
+			  <div class="form-group row">
+			    <div class="col">
+			      <label>Branch Code</label>
+	    		  <input type="text" class="form-control" id="branchCode" name="branchCode" placeholder="Enter branch code..." 
+	    		    value="" required>
+			    </div>
+			    <div class="col">
+	    		  <label>Branch Name</label>
+	    		  <input type="text" class="form-control" id="branchName" name="branchName" placeholder="Enter branch name..." 
+	    		    value="" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <div class="col">
+	    		  <label>PL Account</label>
+	    		  <input type="text" class="form-control" id="profitLossAc" name="profitLossAc" placeholder="Enter PL account..." 
+	    		  	value="" required>
+			    </div>
+			    <div class="col">
+	    		  <label>Loyalty Account</label>
+	    		  <input type="text" class="form-control" id="loyaltyAc" name="loyaltyAc" placeholder="Enter loyalty account..." 
+	    		    value="" required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <div class="col-6">
+	    		  <label>Holding Account</label>
+	    		  <input type="text" class="form-control" id="holdingAc" name="holdingAc" placeholder="Enter holding account..." 
+	    		  	value="" required>
+			    </div>
+			  </div>
+			  <div class="form-group row mb-0">
+		        <div class="col d-flex justify-content-end">
+		          <button type="reset" class="btn btn-sm btn-danger mr-3"><i class="fas fa-eraser"></i> Reset</button>
+		          <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+		        </div>
+		      </div>
+			</form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+  </section>
+</html>

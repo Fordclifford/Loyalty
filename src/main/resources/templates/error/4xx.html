@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    
+    <!-- Favicon -->
+    <link rel="icon" th:href="@{/images/kcb-favicon.png}">
+
+    <title th:text="|${status} - ${error}|">Error</title>
+  </head>
+  <body>
+	<div class="container-fluid d-flex flex-column wrapper bg-jumbo">
+	  <div class="jumbotron alert-danger my-3 text-center flex-grow-1">
+	    <h1 class="display-4" th:text="'Error ' + |${status} - ${error}|">Oops! Something went wrong...</h1>
+	    <p class="lead" th:text="'Message: ' + ${message}">Well, this is embarrassing.</p>
+	    <hr class="my-4">
+	    <p class="lead" th:text="${timestamp}">Please contact the site administrator.</p>
+	    <a class="btn btn-danger btn-lg" th:href="@{/home}" role="button"><i class="fa fa-home"></i> Go home</a>
+	  </div>
+	</div>
+	
+  	<!-- JS -->
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
+</html>

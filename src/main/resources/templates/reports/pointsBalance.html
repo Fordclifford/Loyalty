@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Points Balance Report</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">Points Balance Report</h5>
+	  <div class="card-body">
+        <table id="pointsBalanceReportGrid" class="table table-bordered table-hover w-100 nowrap">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Customer Number</th>
+			  <th scope="col">Name</th>
+			  <th scope="col">Customer Mobile</th>
+			  <th scope="col">DAO</th>
+			  <th scope="col">Points Earned</th>
+			  <th scope="col">Points Redeemed</th>
+			  <th scope="col">Points Balance</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Customer Number</th>
+			  <th scope="col">Name</th>
+			  <th scope="col">Customer Mobile</th>
+			  <th scope="col">DAO</th>
+			  <th scope="col">Points Earned</th>
+			  <th scope="col">Points Redeemed</th>
+			  <th scope="col">Points Balance</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	  </div>
+	</div>
+  </section>
+</html>

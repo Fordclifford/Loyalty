@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Transaction Summary</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">Transaction Summary</h5>
+	  <div class="card-body">
+        <table id="transSummaryGrid" class="table table-bordered table-hover w-100">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Infinia File ID</th>
+			  <th scope="col">KCB File ID</th>
+	          <th scope="col">Infinia File Count</th>
+	          <th scope="col">KCB File Count</th>
+	          <th scope="col">Count Matched</th>
+	          <th scope="col">All Customers Exist</th>
+	          <th scope="col">Non-Customer Count Infinia</th>
+	          <th scope="col">Non-Customer Count KCB</th>
+	          <th scope="col">Infinia Total Points</th>
+	          <th scope="col">KCB Total Points</th>
+	          <th scope="col">Points Matched</th>
+	          <th scope="col">Infinia Distinct Transaction Code</th>
+	          <th scope="col">KCB Distinct Transaction Code</th>
+	          <th scope="col">Distinct Transaction Code Matched</th>
+	          <th scope="col">Infinia Success Count</th>
+	          <th scope="col">KCB Success Count</th>
+	          <th scope="col">Success Count Matched</th>
+	          <th scope="col">Infinia Error Count</th>
+	          <th scope="col">KCB Error Count</th>
+	          <th scope="col">Error Count Matched</th>
+	          <th scope="col">Infinia Total Amount 1</th>
+	          <th scope="col">KCB Total Amount 1</th>
+	          <th scope="col">Amount 1 Matched</th>
+	          <th scope="col">Infinia Total Amount 2</th>
+	          <th scope="col">KCB Total Amount 2</th>
+	          <th scope="col">Amount 2 Matched</th>
+	          <th scope="col">File Matched</th>
+	          <th scope="col">Closed</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Infinia File ID</th>
+			  <th scope="col">KCB File ID</th>
+	          <th scope="col">Infinia File Count</th>
+	          <th scope="col">KCB File Count</th>
+	          <th scope="col">Count Matched</th>
+	          <th scope="col">All Customers Exist</th>
+	          <th scope="col">Non-Customer Count Infinia</th>
+	          <th scope="col">Non-Customer Count KCB</th>
+	          <th scope="col">Infinia Total Points</th>
+	          <th scope="col">KCB Total Points</th>
+	          <th scope="col">Points Matched</th>
+	          <th scope="col">Infinia Distinct Transaction Code</th>
+	          <th scope="col">KCB Distinct Transaction Code</th>
+	          <th scope="col">Distinct Transaction Code Matched</th>
+	          <th scope="col">Infinia Success Count</th>
+	          <th scope="col">KCB Success Count</th>
+	          <th scope="col">Success Count Matched</th>
+	          <th scope="col">Infinia Error Count</th>
+	          <th scope="col">KCB Error Count</th>
+	          <th scope="col">Error Count Matched</th>
+	          <th scope="col">Infinia Total Amount 1</th>
+	          <th scope="col">KCB Total Amount 1</th>
+	          <th scope="col">Amount 1 Matched</th>
+	          <th scope="col">Infinia Total Amount 2</th>
+	          <th scope="col">KCB Total Amount 2</th>
+	          <th scope="col">Amount 2 Matched</th>
+	          <th scope="col">File Matched</th>
+	          <th scope="col">Closed</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	    <div class="modal fade" id="transSummaryView" tabindex="-1" role="dialog" aria-labelledby="transSummaryView" 
+	      aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="transSummaryViewTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+	            <table class="table">
+			      <tbody>
+			        <tr class="table-borderless">
+			          <td>ID</td>
+			          <td id="transId"></td>
+			        </tr>
+			        <tr>
+			          <td>Infinia File ID</td>
+			          <td id="transInfiniaFileId"></td>
+			        </tr>
+			        <tr>
+			          <td>KCB File ID</td>
+			          <td id="transKcbFileId"></td>
+			        </tr>
+			        <tr>
+			          <td>Infinia File Count</td>
+			          <td id="transInfiniaFileCount"></td>
+			        </tr>
+			        <tr>
+			          <td>KCB File Count</td>
+			          <td id="transKcbFileCount"></td>
+			        </tr>
+			        <tr>
+			          <td>Count Matched</td>
+			          <td id="transCountMatched"></td>
+			        </tr>
+			        <!-- <tr>
+			          <td>All Customers Exist</td>
+			          <td id="transAllCustomersExist"></td>
+			        </tr> -->
+			        <tr>
+			          <td>Non-Customer Count Infinia</td>
+			          <td id="transNonCustomerCountInf"></td>
+			        </tr>
+			        <tr>
+			          <td>Non-Customer Count KCB</td>
+			          <td id="transNonCustomerCountKcb"></td>
+			        </tr>
+			        <tr>
+			          <td>Infinia Total Points</td>
+			          <td id="transInfiniaTotalPoints"></td>
+			        </tr>
+			        <tr>
+			          <td>KCB Total Points</td>
+			          <td id="transKcbTotalPoints"></td>
+			        </tr>
+			        <tr>
+			          <td>Points Matched</td>
+			          <td id="transPointsMatched"></td>
+			        </tr>
+			        <tr>
+			          <td>Infinia Distinct Transaction Code</td>
+			          <td id="transInfiniaDistinctTxnCode"></td>
+			        </tr>
+			        <tr>
+			          <td>KCB Distinct Transaction Code</td>
+			          <td id="transKcbDistinctTxnCode"></td>
+			        </tr>
+			        <tr>
+			          <td>Distinct Transaction Code Matched</td>
+			          <td id="transDistinctTxnCodeMatched"></td>
+			        </tr>
+			        <tr>
+			          <td>Infinia Success Count</td>
+			          <td id="transInfiniaSuccessCount"></td>
+			        </tr>
+			        <tr>
+			          <td>KCB Success Count</td>
+			          <td id="transKcbSuccessCount"></td>
+			        </tr>
+			        <tr>
+			          <td>Success Count Matched</td>
+			          <td id="transSuccessCountMatched"></td>
+			        </tr>
+			        <tr>
+			          <td>Infinia Error Count</td>
+			          <td id="transInfiniaErrorCount"></td>
+			        </tr>
+			        <tr>
+			          <td>KCB Error Count</td>
+			          <td id="transKcbErrorCount"></td>
+			        </tr>
+			        <tr>
+			          <td>Error Count Matched</td>
+			          <td id="transErrorCountMatched"></td>
+			        </tr>
+			        <tr>
+			          <td>Infinia Total Amount 1</td>
+			          <td id="transInfiniaTotalAmount1"></td>
+			        </tr>
+			        <tr>
+			          <td>KCB Total Amount 1</td>
+			          <td id="transKcbTotalAmount1"></td>
+			        </tr>
+			        <tr>
+			          <td>Amount 1 Matched</td>
+			          <td id="transAmount1Matched"></td>
+			        </tr>
+			        <tr>
+			          <td>Infinia Total Amount 2</td>
+			          <td id="transInfiniaTotalAmount2"></td>
+			        </tr>
+			        <tr>
+			          <td>KCB Total Amount 2</td>
+			          <td id="transKcbTotalAmount2"></td>
+			        </tr>
+			        <tr>
+			          <td>Amount 2 Matched</td>
+			          <td id="transAmount2Matched"></td>
+			        </tr>
+			        <tr>
+			          <td>File Matched</td>
+			          <td id="transFileMatched"></td>
+			        </tr>
+			        <tr>
+			          <td>Closed</td>
+			          <td id="transClosed"></td>
+			        </tr>
+			      </tbody>
+			    </table>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <div class="card bg-light border-success" layout:fragment="navigation">
+    <div class="list-group list-group-flush" id="accordion">
+      <a class="list-group-item"></a>
+      
+      <a sec:authorize="hasAnyAuthority('VIEW_KCB_UPLOADS','VIEW_INFINIA_UPLOADS','VIEW_CUSTOMER_UPLOADS','VIEW_KCB_RECORDS','VIEW_INFINIA_RECORDS','VIEW_CUSTOMER_RECORDS')" th:href="@{#files}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Files</a>
+      <div class="list-group collapse" id="files" data-parent="#accordion">
+	    <a sec:authorize="hasAnyAuthority('VIEW_KCB_UPLOADS','VIEW_INFINIA_UPLOADS','VIEW_CUSTOMER_UPLOADS')" th:href="@{#uploads}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Uploads</a>
+	    <div class="list-group collapse" id="uploads" data-parent="#files">
+	      <a sec:authorize="hasAuthority('VIEW_CUSTOMER_UPLOADS')" th:href="@{/upload-customer}" th:classappend="${#request.getServletPath() == '/upload-customer' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Customer</a>
+	      <a sec:authorize="hasAuthority('VIEW_KCB_UPLOADS')" th:href="@{/upload-kcb}" th:classappend="${#request.getServletPath() == '/upload-kcb' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> KCB</a>
+	      <a sec:authorize="hasAuthority('VIEW_INFINIA_UPLOADS')" th:href="@{/upload-infinia}" th:classappend="${#request.getServletPath() == '/upload-infinia' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Infinia</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('VIEW_KCB_RECORDS','VIEW_INFINIA_RECORDS','VIEW_CUSTOMER_RECORDS')" th:href="@{#records}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Records</a>
+	    <div class="list-group collapse" id="records" data-parent="#files">
+	      <a sec:authorize="hasAuthority('VIEW_CUSTOMER_RECORDS')" th:href="@{/records-customer}" th:classappend="${#request.getServletPath() == '/records-customer' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Customer</a>
+	      <a sec:authorize="hasAuthority('VIEW_KCB_RECORDS')" th:href="@{/records-kcb}" th:classappend="${#request.getServletPath() == '/records-kcb' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> KCB</a>
+	      <a sec:authorize="hasAuthority('VIEW_INFINIA_RECORDS')" th:href="@{/records-infinia}" th:classappend="${#request.getServletPath() == '/records-infinia' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Infinia</a>
+	    </div>
+	  </div>
+	  
+	  <a sec:authorize="hasAnyAuthority('CREATE_CURRENCY','VIEW_CURRENCIES','CREATE_CHANNEL_CODE','VIEW_CHANNEL_CODES','CREATE_CHANNEL','VIEW_CHANNELS','CREATE_POINTS_MATRIX','VIEW_POINTS_MATRICES','CREATE_DAO','VIEW_DAO','CREATE_TRANSACTION_CODE','VIEW_TRANSACTION_CODES','CREATE_REASON_CODE','VIEW_REASON_CODES','VIEW_DIRECTORIES','CREATE_MERCHANT','VIEW_MERCHANTS')" th:href="@{#parameters}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Parameters</a>
+	  <div class="list-group collapse" id="parameters" data-parent="#accordion">
+	    <a sec:authorize="hasAnyAuthority('CREATE_CURRENCY','VIEW_CURRENCIES')" th:href="@{#currencies}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Currencies</a>
+	    <div class="list-group collapse" id="currencies" data-parent="#parameters">
+	      <a sec:authorize="hasAuthority('CREATE_CURRENCY')" th:href="@{/currency-form}" th:classappend="${#request.getServletPath() == '/currency-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_CURRENCIES')" th:href="@{/currency-grid}" th:classappend="${#request.getServletPath() == '/currency-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('CREATE_PRODUCT_CODE','VIEW_PRODUCT_CODES')" th:href="@{#productCodes}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Product Codes</a>
+	    <div class="list-group collapse" id="productCodes" data-parent="#parameters">
+	      <a sec:authorize="hasAuthority('CREATE_PRODUCT_CODE')" th:href="@{/product-code-form}" th:classappend="${#request.getServletPath() == '/product-code-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_PRODUCT_CODES')" th:href="@{/product-code-grid}" th:classappend="${#request.getServletPath() == '/product-code-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('CREATE_CHANNEL','VIEW_CHANNELS')" th:href="@{#channels}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Channels</a>
+	    <div class="list-group collapse" id="channels" data-parent="#parameters">
+	      <a sec:authorize="hasAuthority('CREATE_CHANNEL')" th:href="@{/channel-form}" th:classappend="${#request.getServletPath() == '/channel-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_CHANNELS')" th:href="@{/channel-grid}" th:classappend="${#request.getServletPath() == '/channel-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('CREATE_POINTS_MATRIX','VIEW_POINTS_MATRICES')" th:href="@{#pointsMatrix}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Points Matrix</a>
+	    <div class="list-group collapse" id="pointsMatrix" data-parent="#parameters">
+	      <a sec:authorize="hasAuthority('CREATE_POINTS_MATRIX')" th:href="@{/points-matrix-form}" th:classappend="${#request.getServletPath() == '/points-matrix-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_POINTS_MATRICES')" th:href="@{/points-matrix-grid}" th:classappend="${#request.getServletPath() == '/points-matrix-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('CREATE_DAO','VIEW_DAO')" th:href="@{#dao}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> DAO</a>
+	    <div class="list-group collapse" id="dao" data-parent="#parameters">
+	      <a sec:authorize="hasAuthority('CREATE_DAO')" th:href="@{/dao-form}" th:classappend="${#request.getServletPath() == '/dao-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_DAO')" th:href="@{/dao-grid}" th:classappend="${#request.getServletPath() == '/dao-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('CREATE_TRANSACTION_CODE','VIEW_TRANSACTION_CODES')" th:href="@{#transactionCodes}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Transaction Codes</a>
+	    <div class="list-group collapse" id="transactionCodes" data-parent="#parameters">
+	      <a sec:authorize="hasAuthority('CREATE_TRANSACTION_CODE')" th:href="@{/transaction-code-form}" th:classappend="${#request.getServletPath() == '/transaction-code-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_TRANSACTION_CODES')" th:href="@{/transaction-code-grid}" th:classappend="${#request.getServletPath() == '/transaction-code-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('CREATE_REASON_CODE','VIEW_REASON_CODES')" th:href="@{#reasonCodes}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Reason Codes</a>
+	    <div class="list-group collapse" id="reasonCodes" data-parent="#parameters">
+	      <a sec:authorize="hasAuthority('CREATE_REASON_CODE')" th:href="@{/reason-code-form}" th:classappend="${#request.getServletPath() == '/reason-code-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_REASON_CODES')" th:href="@{/reason-code-grid}" th:classappend="${#request.getServletPath() == '/reason-code-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('VIEW_DIRECTORIES')" th:href="@{#directories}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Directories</a>
+	    <div class="list-group collapse" id="directories" data-parent="#parameters">
+	      <a sec:authorize="hasAuthority('VIEW_DIRECTORIES')" th:href="@{/directory-grid}" th:classappend="${#request.getServletPath() == '/directory-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('CREATE_MERCHANT','VIEW_MERCHANTS')" th:href="@{#merchants}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Merchants</a>
+	    <div class="list-group collapse" id="merchants" data-parent="#parameters">
+	      <a sec:authorize="hasAuthority('CREATE_MERCHANT')" th:href="@{/merchant-form}" th:classappend="${#request.getServletPath() == '/merchant-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_MERCHANTS')" th:href="@{/merchant-grid}" th:classappend="${#request.getServletPath() == '/merchant-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	  </div>
+	  
+	  <a sec:authorize="hasAnyAuthority('CREATE_PRIVILEGE','VIEW_PRIVILEGES','CREATE_ROLE','VIEW_ROLES','CREATE_USER','VIEW_USERS')" th:href="@{#accessControl}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Access Control</a>
+	  <div class="list-group collapse" id="accessControl" data-parent="#accordion">
+	  	<a sec:authorize="hasAnyAuthority('CREATE_PRIVILEGE','VIEW_PRIVILEGES')" th:href="@{#privileges}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Privileges</a>
+	    <div class="list-group collapse" id="privileges" data-parent="#accessControl">
+	      <a sec:authorize="hasAuthority('CREATE_PRIVILEGE')" th:href="@{/privilege-form}" th:classappend="${#request.getServletPath() == '/privilege-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_PRIVILEGES')" th:href="@{/privilege-grid}" th:classappend="${#request.getServletPath() == '/privilege-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('CREATE_ROLE','VIEW_ROLES')" th:href="@{#roles}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Roles</a>
+	    <div class="list-group collapse" id="roles" data-parent="#accessControl">
+	      <a sec:authorize="hasAuthority('CREATE_ROLE')" th:href="@{/role-form}" th:classappend="${#request.getServletPath() == '/role-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_ROLES')" th:href="@{/role-grid}" th:classappend="${#request.getServletPath() == '/role-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	    
+	    <a sec:authorize="hasAnyAuthority('CREATE_USER','VIEW_USERS')" th:href="@{#users}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Users</a>
+	    <div class="list-group collapse" id="users" data-parent="#accessControl">
+	      <a sec:authorize="hasAuthority('CREATE_USER')" th:href="@{/user-form}" th:classappend="${#request.getServletPath() == '/user-form' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Form</a>
+	      <a sec:authorize="hasAuthority('VIEW_USERS')" th:href="@{/user-grid}" th:classappend="${#request.getServletPath() == '/user-grid' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Grid</a>
+	    </div>
+	  </div>
+	  
+	  <a sec:authorize="hasAnyAuthority('VIEW_TRANSACTION_SUMMARY','VIEW_REDEMPTION_SUMMARY','VIEW_DAO_SUMMARY')" th:href="@{#summaries}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Summaries</a>
+	  <div class="list-group collapse" id="summaries" data-parent="#accordion">
+	    <a sec:authorize="hasAuthority('VIEW_TRANSACTION_SUMMARY')" th:href="@{/trans-summary}" th:classappend="${#request.getServletPath() == '/trans-summary' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Transaction Summary</a>
+	    <a sec:authorize="hasAuthority('VIEW_REDEMPTION_SUMMARY')" th:href="@{/redemption-summary}" th:classappend="${#request.getServletPath() == '/redemption-summary' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Redemption Summary</a>
+	    <a sec:authorize="hasAuthority('VIEW_DAO_SUMMARY')" th:href="@{/dao-summary}" th:classappend="${#request.getServletPath() == '/dao-summary' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> DAO Summary</a>
+	  </div>
+	  
+	  <a sec:authorize="hasAnyAuthority('VIEW_SERVICES')" th:href="@{#services}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Services</a>
+	  <div class="list-group collapse" id="services" data-parent="#accordion">
+	    <a sec:authorize="hasAuthority('VIEW_SERVICES')" th:href="@{/job-check}" th:classappend="${#request.getServletPath() == '/job-check' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Services</a>
+	  </div>
+	  
+	  <a sec:authorize="hasAnyAuthority('VIEW_ACCRUAL_REPORT','VIEW_REDEMPTION_REPORT','VIEW_MEMBER_REPORT','VIEW_POINTS_BALANCE_REPORT','VIEW_PROCESSING_REPORT','VIEW_TRANSACTION_REPORT')" th:href="@{#reports}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Reports</a>
+	  <div class="list-group collapse" id="reports" data-parent="#accordion">
+	  	<a sec:authorize="hasAuthority('VIEW_ACCRUAL_REPORT')" th:href="@{/reports/accrual}" th:classappend="${#request.getServletPath() == '/reports/accrual' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Accrual</a>
+	    <a sec:authorize="hasAuthority('VIEW_REDEMPTION_REPORT')" th:href="@{/reports/redemption}" th:classappend="${#request.getServletPath() == '/reports/redemption' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Redemption</a>
+	    <a sec:authorize="hasAuthority('VIEW_MEMBER_REPORT')" th:href="@{/reports/member}" th:classappend="${#request.getServletPath() == '/reports/member' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Member</a>
+	    <a sec:authorize="hasAuthority('VIEW_POINTS_BALANCE_REPORT')" th:href="@{/reports/points-balance}" th:classappend="${#request.getServletPath() == '/reports/points-balance' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Points Balance</a>
+	    <a sec:authorize="hasAuthority('VIEW_PROCESSING_REPORT')" th:href="@{/reports/processing}" th:classappend="${#request.getServletPath() == '/reports/processing' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Processing</a>
+	    <a sec:authorize="hasAuthority('VIEW_TRANSACTION_REPORT')" th:href="@{/reports/transaction}" th:classappend="${#request.getServletPath() == '/reports/transaction' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Transaction</a>
+	  </div>
+	  
+	  <a sec:authorize="hasAnyAuthority('VIEW_AUDIT_TRAIL')" th:href="@{#auditTrail}" class="list-group-item list-group-item-action" role="button" data-toggle="collapse" aria-expanded="false"><i class="fas fa-angle-right"></i> Audit Trail</a>
+	  <div class="list-group collapse" id="auditTrail" data-parent="#accordion">
+	    <a sec:authorize="hasAuthority('VIEW_AUDIT_TRAIL')" th:href="@{/audit-trail}" th:classappend="${#request.getServletPath() == '/audit-trail' ? 'active' : ''}" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i> Audit Trail</a>
+	  </div>
+	  
+	  <a class="list-group-item"></a>
+    </div>
+  </div>
+</html>

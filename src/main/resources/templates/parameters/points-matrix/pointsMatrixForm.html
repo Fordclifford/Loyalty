@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Points Matrix Form</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary mb-3">
+	  <h5 class="card-header">Points Matrix Form</h5>
+	  <div class="card-body">
+	    <div th:if="${formSuccess}">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span th:text="${formSuccess}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div th:if="${formFailure}">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span th:text="${formFailure}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+	    <form th:action="@{/points-matrix-form}" th:object="${pointsMatrix}" method="post">
+		  <div class="form-group row">
+		    <div class="col">
+		      <label>Channel Code</label>
+		      <select class="custom-select" th:field="*{channelCode}" required>
+				<option value="" selected>Select channel code...</option>
+				<option th:each="channel:${channels}" th:value="${channel}" th:text="${channel}"></option>
+			  </select>
+		    </div>
+		    <div class="col">
+		      <label>Product Name</label>
+		      <select class="custom-select" th:field="*{productName}" required>
+				<option value="" selected>Select product name...</option>
+			  </select>
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <div class="col">
+		      <label>Product Code</label>
+    		  <input type="text" class="form-control" th:field="*{productCode}" placeholder="Enter product code..." required>
+		    </div>
+		    <div class="col">
+    		  <label>Points Value</label>
+    		  <input type="text" class="form-control" th:field="*{pointsValue}" placeholder="Enter points value..." required>
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <div class="col">
+    		  <label>Points Amount</label>
+    		  <input type="text" class="form-control" th:field="*{pointsAmount}" placeholder="Enter points amount..." required>
+		    </div>
+		    <div class="col">
+		      <label>Online Transaction Code</label>
+    		  <input type="text" class="form-control" th:field="*{onlineTransCode}" placeholder="Enter online transaction code...">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <div class="col">
+		      <label>International Transaction Code</label>
+    		  <input type="text" class="form-control" th:field="*{intlTransCode}" 
+    		    placeholder="Enter international transaction code...">
+		    </div>
+		    <div class="col">
+		      <label>POS Transaction Code</label>
+    		  <input type="text" class="form-control" th:field="*{posTxnCode}" placeholder="Enter POS transaction code...">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <div class="col">
+		      <label>Currency</label>
+		      <select class="custom-select" th:field="*{currency}">
+				<option value="" selected>Select currency...</option>
+				<option th:each="currency:${currencies}" th:value="${currency}" th:text="${currency}"></option>
+			  </select>
+		    </div>
+		    <div class="col">
+		      <label>Deal Code</label>
+    		  <input type="text" class="form-control" th:field="*{dealCode}" placeholder="Enter deal code...">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <div class="col">
+		      <label>Minimum Number Of Days</label>
+    		  <input type="text" class="form-control" th:field="*{minDay}" placeholder="Enter minimum number of days...">
+		    </div>
+		    <div class="col">
+		      <label>Maximum Number Of Days</label>
+    		  <input type="text" class="form-control" th:field="*{maxDay}" placeholder="Enter maximum number of days...">
+		    </div>
+		  </div>
+		  <div class="form-group row">
+		    <div class="col-6">
+    		  <label>POS</label>
+    		  <br />
+		      <div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" th:field="*{pos}" value="KCB">
+				<label class="form-check-label">KCB</label>
+			  </div>
+			  <div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" th:field="*{pos}" value="Non-KCB">
+				<label class="form-check-label">Non-KCB</label>
+			  </div>
+		    </div>
+		  </div>
+		  <div class="form-group row mb-0">
+	        <div class="col d-flex justify-content-end">
+	          <button type="reset" class="btn btn-sm btn-danger mr-3"><i class="fas fa-eraser"></i> Reset</button>
+	          <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+	        </div>
+	      </div>
+		</form>
+	  </div>
+	</div>
+  </section>
+</html>

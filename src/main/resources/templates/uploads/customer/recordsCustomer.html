@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>Customer Records</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">Customer Records</h5>
+	  <div class="card-body">
+	    <div th:if="${gridSuccess}">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span th:text="${gridSuccess}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+	    <div id="gridSuccess" class="d-none">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span id="gridMessageSuccess"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div th:if="${gridFailure}">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span th:text="${gridFailure}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div id="gridFailure" class="d-none">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span id="gridMessageFailure"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <table id="recordsCustomerGrid" class="table table-bordered table-hover w-100 nowrap">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Customer Code</th>
+			  <th scope="col">Mnemonic</th>
+	          <th scope="col">Short Name</th>
+	          <th scope="col">Name</th>
+	          <th scope="col">Opt In Date</th>
+	          <th scope="col">Street</th>
+	          <th scope="col">Address</th>
+	          <th scope="col">Town</th>
+	          <th scope="col">Post Code</th>
+	          <th scope="col">Country</th>
+	          <th scope="col">Sector</th>
+	          <th scope="col">Account Officer</th>
+	          <th scope="col">Other Officer</th>
+	          <th scope="col">Industry</th>
+	          <th scope="col">Target</th>
+	          <th scope="col">Nationality</th>
+	          <th scope="col">Customer Status</th>
+	          <th scope="col">Residence</th>
+	          <th scope="col">Contact Date</th>
+	          <th scope="col">Customer Office</th>
+	          <th scope="col">Customer Mobile</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Customer Code</th>
+			  <th scope="col">Mnemonic</th>
+	          <th scope="col">Short Name</th>
+	          <th scope="col">Name</th>
+	          <th scope="col">Opt In Date</th>
+	          <th scope="col">Street</th>
+	          <th scope="col">Address</th>
+	          <th scope="col">Town</th>
+	          <th scope="col">Post Code</th>
+	          <th scope="col">Country</th>
+	          <th scope="col">Sector</th>
+	          <th scope="col">Account Officer</th>
+	          <th scope="col">Other Officer</th>
+	          <th scope="col">Industry</th>
+	          <th scope="col">Target</th>
+	          <th scope="col">Nationality</th>
+	          <th scope="col">Customer Status</th>
+	          <th scope="col">Residence</th>
+	          <th scope="col">Contact Date</th>
+	          <th scope="col">Customer Office</th>
+	          <th scope="col">Customer Mobile</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	    <div class="modal fade" id="recordsCustomerConfirm" tabindex="-1" role="dialog" aria-labelledby="recordsCustomerConfirm" 
+	      aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Confirmation</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>Are you sure?</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-times"></i> No</button>
+		        <button type="button" class="btn btn-danger" id="yesConfirm"><i class="fas fa-check"></i> Yes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	    <div class="modal fade" id="recordsCustomerView" tabindex="-1" role="dialog" aria-labelledby="recordsCustomerView" 
+	      aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="recordsCustomerViewTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+	            <table class="table">
+			      <tbody>
+			        <tr class="table-borderless">
+			          <td>ID</td>
+			          <td id="recordsId"></td>
+			        </tr>
+			        <tr>
+			          <td>Customer Code</td>
+			          <td id="recordsCustomerCode"></td>
+			        </tr>
+			        <tr>
+			          <td>Mnemonic</td>
+			          <td id="recordsMnemonic"></td>
+			        </tr>
+			        <tr>
+			          <td>Short Name</td>
+			          <td id="recordsShortName"></td>
+			        </tr>
+			        <tr>
+			          <td>Name</td>
+			          <td id="recordsName"></td>
+			        </tr>
+			        <tr>
+			          <td>Opt In Date</td>
+			          <td id="recordsOptInDate"></td>
+			        </tr>
+			        <tr>
+			          <td>Street</td>
+			          <td id="recordsStreet"></td>
+			        </tr>
+			        <tr>
+			          <td>Address</td>
+			          <td id="recordsAddress"></td>
+			        </tr>
+			        <tr>
+			          <td>Town</td>
+			          <td id="recordsTown"></td>
+			        </tr>
+			        <tr>
+			          <td>Post Code</td>
+			          <td id="recordsPostCode"></td>
+			        </tr>
+			        <tr>
+			          <td>Country</td>
+			          <td id="recordsCountry"></td>
+			        </tr>
+			        <tr>
+			          <td>Sector</td>
+			          <td id="recordsSector"></td>
+			        </tr>
+			        <tr>
+			          <td>Account Officer</td>
+			          <td id="recordsAccountOfficer"></td>
+			        </tr>
+			        <tr>
+			          <td>Other Officer</td>
+			          <td id="recordsOtherOfficer"></td>
+			        </tr>
+			        <tr>
+			          <td>Industry</td>
+			          <td id="recordsIndustry"></td>
+			        </tr>
+			        <tr>
+			          <td>Target</td>
+			          <td id="recordsTarget"></td>
+			        </tr>
+			        <tr>
+			          <td>Nationality</td>
+			          <td id="recordsNationality"></td>
+			        </tr>
+			        <tr>
+			          <td>Customer Status</td>
+			          <td id="recordsCustomerStatus"></td>
+			        </tr>
+			        <tr>
+			          <td>Residence</td>
+			          <td id="recordsResidence"></td>
+			        </tr>
+			        <tr>
+			          <td>Contact Date</td>
+			          <td id="recordsContactDate"></td>
+			        </tr>
+			        <tr>
+			          <td>Customer Office</td>
+			          <td id="recordsCustOffice"></td>
+			        </tr>
+			        <tr>
+			          <td>Customer Mobile</td>
+			          <td id="recordsCustMobile"></td>
+			        </tr>
+			      </tbody>
+			    </table>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div class="modal fade" id="recordsCustomerEdit" tabindex="-1" role="dialog" aria-labelledby="recordsCustomerEdit" 
+		  aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="recordsCustomerEditTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form th:action="@{/edit-customer-record-form}" method="post">
+		          <input type="hidden" id="id" name="id">
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Customer Code</label>
+		    		  <input type="text" class="form-control" id="customerCode" name="customerCode" 
+		    		    placeholder="Enter customer code..." value="" required>
+				    </div>
+				    <div class="col">
+		    		  <label>Mnemonic</label>
+		    		  <input type="text" class="form-control" id="mnemonic" name="mnemonic" placeholder="Enter mnemonic..." 
+		    		    value="" required>
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+		    		  <label>Short Name</label>
+		    		  <input type="text" class="form-control" id="shortName" name="shortName" placeholder="Enter short name..." 
+		    		    value="" required>
+				    </div>
+				    <div class="col">
+				      <label>Name</label>
+		    		  <input type="text" class="form-control" id="name" name="name" placeholder="Enter name..." value="" required>
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Opt In Date</label>
+		    		  <input type="text" class="form-control" id="optInDate" name="optInDate" placeholder="Enter opt in date..." 
+		    		    value="">
+				    </div>
+				    <div class="col">
+				      <label>Street</label>
+		    		  <input type="text" class="form-control" id="street" name="street" placeholder="Enter street..." value="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Address</label>
+		    		  <input type="text" class="form-control" id="address" name="address" placeholder="Enter address..." value="">
+				    </div>
+				    <div class="col">
+				      <label>Town</label>
+		    		  <input type="text" class="form-control" id="town" name="town" placeholder="Enter town..." value="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Post Code</label>
+		    		  <input type="text" class="form-control" id="postCode" name="postCode" placeholder="Enter post code..." 
+		    		    value="">
+				    </div>
+				    <div class="col">
+				      <label>Country</label>
+		    		  <input type="text" class="form-control" id="country" name="country" placeholder="Enter country..." value="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Sector</label>
+		    		  <input type="text" class="form-control" id="sector" name="sector" placeholder="Enter sector..." value="">
+				    </div>
+				    <div class="col">
+				      <label>Account Officer</label>
+		    		  <input type="text" class="form-control" id="accountOfficer" name="accountOfficer" value="" required 
+		    		    placeholder="Enter account officer...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Other Officer</label>
+		    		  <input type="text" class="form-control" id="otherOfficer" name="otherOfficer" value="" 
+		    		    placeholder="Enter other officer...">
+				    </div>
+				    <div class="col">
+				      <label>Industry</label>
+		    		  <input type="text" class="form-control" id="industry" name="industry" placeholder="Enter industry..." value="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Target</label>
+		    		  <input type="text" class="form-control" id="target" name="target" placeholder="Enter target..." 
+		    		    value="">
+				    </div>
+				    <div class="col">
+				      <label>Nationality</label>
+		    		  <input type="text" class="form-control" id="nationality" name="nationality" placeholder="Enter nationality..." 
+		    		    value="" required>
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Customer Status</label>
+		    		  <input type="text" class="form-control" id="customerStatus" name="customerStatus" value="" 
+		    		    placeholder="Enter customer status...">
+				    </div>
+				    <div class="col">
+				      <label>Residence</label>
+		    		  <input type="text" class="form-control" id="residence" name="residence" placeholder="Enter residence..." 
+		    		    value="">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Contact Date</label>
+		    		  <input type="text" class="form-control" id="contactDate" name="contactDate" placeholder="Enter contact date..." 
+		    		    value="">
+				    </div>
+				    <div class="col">
+				      <label>Customer Office</label>
+		    		  <input type="text" class="form-control" id="custOffice" name="custOffice" value="" 
+		    		    placeholder="Enter customer office...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col-6">
+				      <label>Customer Mobile</label>
+		    		  <input type="text" class="form-control" id="custMobile" name="custMobile" value="" 
+		    		    placeholder="Enter customer mobile...">
+				    </div>
+				  </div>
+				  <div class="form-group row mb-0">
+			        <div class="col d-flex justify-content-end">
+			          <button type="reset" class="btn btn-sm btn-danger mr-3"><i class="fas fa-eraser"></i> Reset</button>
+			          <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+			        </div>
+			      </div>
+				</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+</html>

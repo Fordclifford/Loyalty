@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>DAO Summary</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">DAO Summary</h5>
+	  <div class="card-body">
+	  	<div th:if="${gridSuccess}">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span th:text="${gridSuccess}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+	    <div id="gridSuccess" class="d-none">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span id="gridMessageSuccess"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div th:if="${gridFailure}">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span th:text="${gridFailure}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div id="gridFailure" class="d-none">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span id="gridMessageFailure"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <table id="daoSummaryGrid" class="table table-bordered table-hover w-100 nowrap">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">DAO</th>
+			  <th scope="col">Amount 1</th>
+	          <th scope="col">Amount 2</th>
+	          <th scope="col">Total Points</th>
+	          <th scope="col">Posting 75</th>
+	          <th scope="col">Posting 25</th>
+	          <th scope="col">PL Account</th>
+	          <th scope="col">Suspense Account</th>
+	          <th scope="col">Holding Account</th>
+	          <th scope="col">Posting Date</th>
+	          <th scope="col">T24 Reference</th>
+	          <th scope="col">Message ID</th>
+	          <th scope="col">File ID</th>
+	          <th scope="col">Description</th>
+	          <th scope="col">Reason</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">DAO</th>
+			  <th scope="col">Amount 1</th>
+	          <th scope="col">Amount 2</th>
+	          <th scope="col">Total Points</th>
+	          <th scope="col">Posting 75</th>
+	          <th scope="col">Posting 25</th>
+	          <th scope="col">PL Account</th>
+	          <th scope="col">Suspense Account</th>
+	          <th scope="col">Holding Account</th>
+	          <th scope="col">Posting Date</th>
+	          <th scope="col">T24 Reference</th>
+	          <th scope="col">Message ID</th>
+	          <th scope="col">File ID</th>
+	          <th scope="col">Description</th>
+	          <th scope="col">Reason</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	    <div class="modal fade" id="daoSummaryConfirm" tabindex="-1" role="dialog" aria-labelledby="daoSummaryConfirm" 
+	      aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Confirmation</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>Are you sure?</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-times"></i> No</button>
+		        <button type="button" class="btn btn-danger" id="yesConfirm"><i class="fas fa-check"></i> Yes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	    <div class="modal fade" id="daoSummaryView" tabindex="-1" role="dialog" aria-labelledby="daoSummaryView" 
+	      aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="daoSummaryViewTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+	            <table class="table">
+			      <tbody>
+			        <tr class="table-borderless">
+			          <td>ID</td>
+			          <td id="daoSumId"></td>
+			        </tr>
+			        <tr>
+			          <td>DAO</td>
+			          <td id="daoSumDao"></td>
+			        </tr>
+			        <tr>
+			          <td>Amount 1</td>
+			          <td id="daoSumAmount1"></td>
+			        </tr>
+			        <tr>
+			          <td>Amount 2</td>
+			          <td id="daoSumAmount2"></td>
+			        </tr>
+			        <tr>
+			          <td>Total Points</td>
+			          <td id="daoSumTotalPoints"></td>
+			        </tr>
+			        <tr>
+			          <td>Posting 75</td>
+			          <td id="daoSumPosting75"></td>
+			        </tr>
+			        <tr>
+			          <td>Posting 25</td>
+			          <td id="daoSumPosting25"></td>
+			        </tr>
+			        <tr>
+			          <td>PL Account</td>
+			          <td id="daoSumProfitLossAc"></td>
+			        </tr>
+			        <tr>
+			          <td>Suspense Account</td>
+			          <td id="daoSumSuspenseAc"></td>
+			        </tr>
+			        <tr>
+			          <td>Holding Account</td>
+			          <td id="daoSumHoldingAc"></td>
+			        </tr>
+			        <tr>
+			          <td>Posting Date</td>
+			          <td id="daoSumPostingDate"></td>
+			        </tr>
+			        <tr>
+			          <td>T24 Reference</td>
+			          <td id="daoSumT24Ref"></td>
+			        </tr>
+			        <tr>
+			          <td>Message ID</td>
+			          <td id="daoSumMessageId"></td>
+			        </tr>
+			        <tr>
+			          <td>File ID</td>
+			          <td id="daoSumFileId"></td>
+			        </tr>
+			        <tr>
+			          <td>Description</td>
+			          <td id="daoSumDescription"></td>
+			        </tr>
+			        <tr>
+			          <td>Reason</td>
+			          <td id="daoSumReason"></td>
+			        </tr>
+			      </tbody>
+			    </table>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div class="modal fade" id="daoSummaryEdit" tabindex="-1" role="dialog" aria-labelledby="daoSummaryEdit" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="daoSummaryEditTitle"></h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form th:action="@{/edit-dao-summary}" method="post">
+		          <input type="hidden" id="id" name="id">
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>DAO</label>
+		    		  <input type="text" class="form-control" id="dao" name="dao" value="" placeholder="Enter DAO...">
+				    </div>
+				    <div class="col">
+				      <label>Amount 1</label>
+		    		  <input type="text" class="form-control" id="amount1" name="amount1" value="" placeholder="Enter amount 1...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Amount 2</label>
+		    		  <input type="text" class="form-control" id="amount2" name="amount2" value="" placeholder="Enter amount 2...">
+				    </div>
+				    <div class="col">
+				      <label>Total Points</label>
+		    		  <input type="text" class="form-control" id="totalPoints" name="totalPoints" value="" 
+		    		  	placeholder="Enter total points...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Posting 75</label>
+		    		  <input type="text" class="form-control" id="posting75" name="posting75" value="" 
+		    		  	placeholder="Enter posting 75...">
+				    </div>
+				    <div class="col">
+				      <label>Posting 25</label>
+		    		  <input type="text" class="form-control" id="posting25" name="posting25" value="" 
+		    		  	placeholder="Enter posting 25...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>PL Account</label>
+		    		  <input type="text" class="form-control" id="profitLossAc" name="profitLossAc" value="" 
+		    		  	placeholder="Enter PL account...">
+				    </div>
+				    <div class="col">
+				      <label>Suspense Account</label>
+		    		  <input type="text" class="form-control" id="suspenseAc" name="suspenseAc" value="" 
+		    		  	placeholder="Enter suspense account...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>Holding Account</label>
+		    		  <input type="text" class="form-control" id="holdingAc" name="holdingAc" value="" 
+		    		  	placeholder="Enter holding account...">
+				    </div>
+				    <div class="col">
+				      <label>Posting Date</label>
+		    		  <input type="text" class="form-control" id="postingDate" name="postingDate" value="" 
+		    		  	placeholder="Enter posting date...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>T24 Reference</label>
+		    		  <input type="text" class="form-control" id="t24Ref" name="t24Ref" value="" 
+		    		  	placeholder="Enter T24 reference...">
+				    </div>
+				    <div class="col">
+				      <label>Message ID</label>
+		    		  <input type="text" class="form-control" id="messageId" name="messageId" value="" 
+		    		  	placeholder="Enter message ID...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col">
+				      <label>File ID</label>
+		    		  <input type="text" class="form-control" id="fileId" name="fileId" value="" placeholder="Enter file ID...">
+				    </div>
+				    <div class="col">
+				      <label>Description</label>
+		    		  <input type="text" class="form-control" id="description" name="description" value="" 
+		    		  	placeholder="Enter description...">
+				    </div>
+				  </div>
+				  <div class="form-group row">
+				    <div class="col-6">
+				      <label>Reason</label>
+		    		  <input type="text" class="form-control" id="reason" name="reason" value="" placeholder="Enter reason...">
+				    </div>
+				  </div>
+				  <div class="form-group row mb-0">
+			        <div class="col d-flex justify-content-end">
+			          <button type="reset" class="btn btn-sm btn-danger mr-3"><i class="fas fa-eraser"></i> Reset</button>
+			          <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+			        </div>
+			      </div>
+				</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section>
+</html>

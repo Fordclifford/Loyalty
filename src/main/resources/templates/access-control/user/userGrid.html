@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+  layout:decorate="~{layout/layout}">
+  <head>
+    <title>User Grid</title>
+  </head>
+  <section layout:fragment="content">
+    <div class="card border-success bg-light text-secondary">
+	  <h5 class="card-header">User Grid</h5>
+	  <div class="card-body">
+	    <div th:if="${gridSuccess}">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span th:text="${gridSuccess}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+	    <div id="gridSuccess" class="d-none">
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check"></i> <span id="gridMessageSuccess"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div th:if="${gridFailure}">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span th:text="${gridFailure}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <div id="gridFailure" class="d-none">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-times"></i> <span id="gridMessageFailure"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+        </div>
+        <table id="userGrid" class="table table-bordered table-hover w-100 nowrap">
+	      <thead class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Username</th>
+			  <th scope="col">First Name</th>
+			  <th scope="col">Last Name</th>
+			  <th scope="col">Email</th>
+			  <th scope="col">Role</th>
+			  <th scope="col">Enabled</th>
+			  <th scope="col">DAO</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </thead>
+	      <tfoot class="thead-light">
+	        <tr>
+	          <th scope="col">ID</th>
+			  <th scope="col">Username</th>
+			  <th scope="col">First Name</th>
+			  <th scope="col">Last Name</th>
+			  <th scope="col">Email</th>
+			  <th scope="col">Role</th>
+			  <th scope="col">Enabled</th>
+			  <th scope="col">DAO</th>
+	          <th scope="col">Actions</th>
+	        </tr>
+	      </tfoot>
+	    </table>
+	  </div>
+	</div>
+	<div class="modal fade" id="userConfirm" tabindex="-1" role="dialog" aria-labelledby="userConfirm" 
+	  aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Confirmation</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <p>Are you sure?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-times"></i> No</button>
+	        <button type="button" class="btn btn-danger" id="yesConfirm"><i class="fas fa-check"></i> Yes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="userView" tabindex="-1" role="dialog" aria-labelledby="userView" 
+	  aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="userViewTitle"></h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+            <table class="table">
+		      <tbody>
+		        <tr class="table-borderless">
+		          <td>ID</td>
+		          <td id="userId"></td>
+		        </tr>
+		        <tr>
+		          <td>Username</td>
+		          <td id="userUsername"></td>
+		        </tr>
+		        <tr>
+		          <td>First Name</td>
+		          <td id="userFirstName"></td>
+		        </tr>
+		        <tr>
+		          <td>Last Name</td>
+		          <td id="userLastName"></td>
+		        </tr>
+		        <tr>
+		          <td>Email</td>
+		          <td id="userEmail"></td>
+		        </tr>
+		        <tr>
+		          <td>Role</td>
+		          <td id="userRole"></td>
+		        </tr>
+		        <tr>
+		          <td>Enabled</td>
+		          <td id="userEnabled"></td>
+		        </tr>
+		        <tr>
+		          <td>DAO</td>
+		          <td id="userDao"></td>
+		        </tr>
+		      </tbody>
+		    </table>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade" id="userEdit" tabindex="-1" role="dialog" aria-labelledby="userEdit" 
+	  aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="userEditTitle"></h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <form th:action="@{/edit-user-form}" method="post">
+	          <input type="hidden" id="id" name="id">
+			  <div class="form-group row">
+			    <div class="col">
+			      <label>Username</label>
+	    		  <input type="text" class="form-control" id="username" name="username" placeholder="Enter username..." required>
+			    </div>
+			    <div class="col">
+	    		  <label>First Name</label>
+	    		  <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name..." required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <div class="col">
+	    		  <label>Last Name</label>
+	    		  <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name..." required>
+			    </div>
+			    <div class="col">
+			      <label>Email</label>
+	    		  <input type="email" class="form-control" id="email" name="email" placeholder="Enter email..." required>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <div class="col">
+			      <label>Role</label>
+			      <select class="custom-select" id="role" name="role" required>
+					<option value="" selected>Select role...</option>
+					<option th:each="role:${roles}" th:value="${role.getName()}" th:text="${role.getName()}"></option>
+				  </select>
+			    </div>
+			    <div class="col">
+			      <label>DAO</label>
+			      <select class="custom-select" id="dao" name="dao" required>
+					<option value="" selected>Select DAO...</option>
+					<option th:each="branch:${dao}" th:value="${branch.getBranchCode()}" th:text="${branch.getBranchName()}"></option>
+				  </select>
+			    </div>
+			  </div>
+			  <div class="form-group row">
+			    <div class="col">
+			      <label>Enabled</label>
+			      <br />
+			      <div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="enabled1" name="enabled" value="Yes" required>
+					<label class="form-check-label">Yes</label>
+				  </div>
+				  <div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" id="enabled2" name="enabled" value="No" required>
+					<label class="form-check-label">No</label>
+				  </div>
+			    </div>
+			  </div>
+			  <div class="form-group row mb-0">
+		        <div class="col d-flex justify-content-end">
+		          <button type="reset" class="btn btn-sm btn-danger mr-3"><i class="fas fa-eraser"></i> Reset</button>
+		          <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+		        </div>
+		      </div>
+			</form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+  </section>
+</html>

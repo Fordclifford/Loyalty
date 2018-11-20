@@ -1,0 +1,99 @@
+<xs:schema elementFormDefault="qualified" targetNamespace="http://loyalty.kcbgroup.com/webserviceserver" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://loyalty.kcbgroup.com/webserviceserver">
+   <xs:element name="PointsEnquiryServer">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="pintMerchantId" type="xs:int"/>
+            <xs:element minOccurs="0" name="pstrMerchantCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrMerchantPassword" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrCIF" nillable="true" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="PointsEnquiryResponseServer">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="PointsEnquiryResultServer" nillable="true" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="PointsRedemptionServer">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="pintMerchantId" type="xs:int"/>
+            <xs:element minOccurs="0" name="pstrMerchantCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrMerchantPassword" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrCIF" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrPhoneNumber" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pintTotalPoints" type="xs:int"/>
+            <xs:element minOccurs="0" name="pstrChannel" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrMerchantName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrNarration" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrMobiTransactionId" nillable="true" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="PointsRedemptionResponseServer">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="PointsRedemptionResultServer" nillable="true" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="ProfileCheckServer">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="pintMerchantId" type="xs:int"/>
+            <xs:element minOccurs="0" name="pstrMerchantCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrMerchantPassword" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrMobileNumber" nillable="true" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="ProfileCheckResponseServer">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="ProfileCheckResultServer" nillable="true" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="MemberStatementServer">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="pintMerchantId" type="xs:int"/>
+            <xs:element minOccurs="0" name="pstrMerchantCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrMerchantPassword" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrMobileNumber" nillable="true" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="MemberStatementResponseServer">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="MemberStatementResultServer" nillable="true" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="PointsTransferServer">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="pintMerchantId" type="xs:int"/>
+            <xs:element minOccurs="0" name="pstrMerchantCode" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrMerchantPassword" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrSenderCIF" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrSenderPhoneNumber" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrReceiverCIF" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrReceiverPhoneNumber" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pintTransferPoints" type="xs:int"/>
+            <xs:element minOccurs="0" name="pstrChannel" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="pstrNarration" nillable="true" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="PointsTransferResponseServer">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="PointsTransferResultServer" nillable="true" type="xs:string"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
